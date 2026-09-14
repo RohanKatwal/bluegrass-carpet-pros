@@ -553,7 +553,7 @@ function Contact() {
   return (
     <section id="contact" className="section-padding bg-background">
       <div className="container-tight">
-        <div className="mx-auto max-w-3xl">
+        <div className="mx-auto max-w-5xl">
           <div className="rounded-3xl bg-primary p-8 text-primary-foreground shadow-xl md:p-12">
             <div className="text-center">
               <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Get Your Free Quote Today</h2>
@@ -565,27 +565,27 @@ function Contact() {
             <div className="mt-10 grid gap-6 md:grid-cols-2">
               <a
                 href={phoneHref}
-                className="group flex items-center gap-4 rounded-2xl bg-white/10 p-5 backdrop-blur-sm transition-colors hover:bg-white/20"
+                className="group flex min-w-0 items-center gap-4 rounded-2xl bg-white/10 p-5 backdrop-blur-sm transition-colors hover:bg-white/20"
               >
-                <div className="rounded-full bg-white/20 p-3">
+                <div className="shrink-0 rounded-full bg-white/20 p-3">
                   <PhoneIcon className="h-6 w-6" />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <p className="text-sm font-medium text-white/80">Call us</p>
-                  <p className="text-lg font-semibold">{PHONE}</p>
+                  <p className="break-words text-lg font-semibold">{PHONE}</p>
                 </div>
               </a>
 
               <a
                 href={emailHref}
-                className="group flex items-center gap-4 rounded-2xl bg-white/10 p-5 backdrop-blur-sm transition-colors hover:bg-white/20"
+                className="group flex min-w-0 items-center gap-4 rounded-2xl bg-white/10 p-5 backdrop-blur-sm transition-colors hover:bg-white/20"
               >
-                <div className="rounded-full bg-white/20 p-3">
+                <div className="shrink-0 rounded-full bg-white/20 p-3">
                   <EmailIcon className="h-6 w-6" />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <p className="text-sm font-medium text-white/80">Email us</p>
-                  <p className="text-lg font-semibold">{EMAIL}</p>
+                  <p className="break-words text-lg font-semibold">{EMAIL}</p>
                 </div>
               </a>
             </div>
@@ -642,14 +642,14 @@ function Footer() {
             <ul className="mt-4 space-y-3 text-sm">
               <li>
                 <a href={phoneHref} className="flex items-center gap-2 text-muted-foreground hover:text-primary">
-                  <PhoneIcon className="h-4 w-4" />
-                  {PHONE}
+                  <PhoneIcon className="h-4 w-4 shrink-0" />
+                  <span className="break-words">{PHONE}</span>
                 </a>
               </li>
               <li>
                 <a href={emailHref} className="flex items-center gap-2 text-muted-foreground hover:text-primary">
-                  <EmailIcon className="h-4 w-4" />
-                  {EMAIL}
+                  <EmailIcon className="h-4 w-4 shrink-0" />
+                  <span className="break-words">{EMAIL}</span>
                 </a>
               </li>
               <li className="flex items-start gap-2 text-muted-foreground">
