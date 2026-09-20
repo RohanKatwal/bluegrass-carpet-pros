@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { QuoteDialog } from "@/components/quote-dialog";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -188,7 +189,7 @@ function UsersIcon({ className }: { className?: string }) {
   );
 }
 
-function Header() {
+function Header({ onGetQuote }: { onGetQuote: () => void }) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
@@ -224,12 +225,13 @@ function Header() {
           <a href={`tel:${PHONE.replace(/\s|-/g, "")}`} className="text-sm font-semibold text-primary hover:underline">
             {PHONE}
           </a>
-          <a
-            href="#contact"
+          <button
+            type="button"
+            onClick={onGetQuote}
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
           >
             Get a Free Quote
-          </a>
+          </button>
         </div>
 
         <button
@@ -264,13 +266,16 @@ function Header() {
                 <PhoneIcon className="h-5 w-5" />
                 {PHONE}
               </a>
-              <a
-                href="#contact"
+              <button
+                type="button"
                 className="mx-3 inline-flex items-center justify-center rounded-md bg-primary px-4 py-3 text-base font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
-                onClick={() => setMobileOpen(false)}
+                onClick={() => {
+                  setMobileOpen(false);
+                  onGetQuote();
+                }}
               >
                 Get a Free Quote
-              </a>
+              </button>
             </div>
           </nav>
         </div>
@@ -279,7 +284,7 @@ function Header() {
   );
 }
 
-function Hero() {
+function Hero({ onGetQuote }: { onGetQuote: () => void }) {
   return (
     <section id="hero" className="relative flex min-h-[600px] items-center md:min-h-[700px]">
       <div className="absolute inset-0">
@@ -307,12 +312,13 @@ function Hero() {
             you can breathe easier and love your floors again.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <a
-              href="#contact"
+            <button
+              type="button"
+              onClick={onGetQuote}
               className="inline-flex items-center justify-center rounded-md bg-white px-6 py-3.5 text-base font-bold text-primary shadow-lg transition-transform hover:-translate-y-0.5 hover:bg-white/95"
             >
               Get a Free Quote
-            </a>
+            </button>
             <a
               href={`tel:${PHONE.replace(/\s|-/g, "")}`}
               className="inline-flex items-center justify-center gap-2 rounded-md border-2 border-white/40 bg-white/10 px-6 py-3.5 text-base font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/20"
@@ -546,7 +552,7 @@ function Testimonials() {
   );
 }
 
-function Contact() {
+function Contact({ onGetQuote }: { onGetQuote: () => void }) {
   const phoneHref = `tel:${PHONE.replace(/\s|-/g, "")}`;
   const emailHref = `mailto:${EMAIL}`;
 
@@ -558,8 +564,15 @@ function Contact() {
             <div className="text-center">
               <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Get Your Free Quote Today</h2>
               <p className="mt-4 text-lg text-white/90">
-                Ready for a cleaner home or business? Call or email us and we'll get back to you quickly.
+                Ready for a cleaner home or business? Send us a quick request, or call or email us, and we'll get back to you quickly.
               </p>
+              <button
+                type="button"
+                onClick={onGetQuote}
+                className="mt-6 inline-flex items-center justify-center rounded-md bg-white px-6 py-3.5 text-base font-bold text-primary shadow-lg transition-transform hover:-translate-y-0.5 hover:bg-white/95"
+              >
+                Request a Free Quote
+              </button>
             </div>
 
             <div className="mt-10 grid gap-6 md:grid-cols-2">
@@ -704,18 +717,22 @@ function Footer() {
 }
 
 function Index() {
+  const [quoteOpen, setQuoteOpen] = useState(false);
+  const openQuote = () => setQuoteOpen(true);
+
   return (
     <>
-      <Header />
+      <Header onGetQuote={openQuote} />
       <main>
-        <Hero />
+        <Hero onGetQuote={openQuote} />
         <Services />
         <WhyChooseUs />
         <Gallery />
         <Testimonials />
-        <Contact />
+        <Contact onGetQuote={openQuote} />
       </main>
       <Footer />
+      <QuoteDialog open={quoteOpen} onOpenChange={setQuoteOpen} phone={PHONE} />
     </>
   );
 }
