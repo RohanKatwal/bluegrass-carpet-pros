@@ -12,7 +12,7 @@ import {
 // form-to-email service with no account or API key. The first submission ever sent triggers an
 // activation email to this address; click the link in it once and every quote after that
 // is delivered normally.
-const QUOTE_EMAIL = "dineshkatwal202@gmail.com";
+const QUOTE_EMAIL = "bluegrasscarpetpros@gmail.com";
 const FORM_ENDPOINT = `https://formsubmit.co/ajax/${QUOTE_EMAIL}`;
 
 const SERVICES = [
